@@ -1,0 +1,106 @@
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: #dedede;
+  padding: 5px;
+  margin: 15px;
+  font-size: 25px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 1.95em;
+}
+
+h2 {
+  text-align: center;
+}
+
+li {
+  margin-top: 20px;
+}
+
+img {
+  /* Removed for consistency */
+  /* border: 5px solid blue; */
+  /* border-radius: 35px; */
+  width: 100%;
+}
+
+.label {
+  text-align: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.grid {
+  /* 
+  The mobile view ( before any media query) uses valid CSS for a single column grid  
+  The mobile view ( before any media query) uses valid CSS for a grid gap.  
+  */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.grid figure {
+  border: 5px solid blue;
+  background-color: white;
+}
+
+/* 
+The first media query uses min-width and triggers at 772 px.  
+*/
+@media screen and (min-width: 772px) {
+  .grid {
+    /* The tablet view uses valid CSS for a two column grid. */
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid figure {
+    /* The tablet view uses valid CSS to set the border radius on the figures to create a circular shape. */
+    border-radius: 50%;
+    /* Added overflow to contain image within the figure */
+    overflow: hidden;
+  }
+
+  .grid figure:last-child {
+    /* The tablet view uses valid CSS to set the last figure  to take up both columns   */
+    grid-column: span 2;
+  }
+}
+
+/* 
+The second media query (for the large-screen view)  uses min-width and triggers at 992 px.
+*/
+@media screen and (min-width: 992px) {
+  .grid figure {
+    /* The tablet view uses valid CSS to remove the border radius from all of the figures. */
+    border-radius: 0px;
+  }
+  /* Every third image, span 2 columns */
+  .grid figure:nth-child(3n) {
+    grid-column: span 2;
+  }
+}
+
+/* 
+When the user has set their preference to reduce motion/animation the scroll from clicking the return to Top button is disabled.  
+When the user has set their preference to use a dark color scheme the figures have a dark background color, a light font color, and a black border.  
+*/
+
+@media (prefers-reduced-motion) {
+  body {
+    scroll-behavior: auto;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .grid figure {
+    background-color: #3f3f3f;
+    color: #dfdfdf;
+    border: 5px solid black;
+  }
+}
